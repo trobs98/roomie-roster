@@ -25,7 +25,7 @@ function App() {
       <Routes>
         <Route 
           path="/profile" 
-          element={<PrivateRoute user={user} privateComponent={ProfilePage} name="Tyler" value="Roberts"/>} 
+          element={<PrivateRoute user={user} privateComponent={ProfilePage} />} 
         />
         <Route 
           path="/" 
