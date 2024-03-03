@@ -1,24 +1,17 @@
-import React, { Component } from "react";
-import { useSelector } from "react-redux";
-import { getProfile } from "../features/profile/profileSlice";
-import { Navigate, Route } from "react-router-dom";
+import QueryString from "qs";
+import React from "react";
+import { Navigate, useLocation, useParams } from "react-router-dom";
 
-const PrivateRoute = ({ component, ...rest }) => {
-    const profile = useSelector(getProfile);
-    const isLoggedIn = profile.isLoggedIn;
+const PrivateRoute = ({ user: user, privateComponent: PrivateComponent, ...rest}) => {
+    const location = useLocation();
+    const urlParams = useParams();
+    const isLoggedIn = user.user.getIsLoggedin();
 
-    return (
-        <Route
-            {...rest}
-            render={props => { 
-                isLoggedIn ? (
-                    <Component {...props} />
-                ) : (
-                    <Route path="/login" element={<Navigate replace to="/login" />} />
-                )
-            }}
-        />
-    )
+    if (isLoggedIn) {
+        return (<PrivateComponent {...rest} />)
+    } else {
+        return (<Navigate replace to="/login" />)
+    }
 }
 
 export default PrivateRoute;

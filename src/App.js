@@ -7,15 +7,14 @@ import {
   Route,
   Navigate
 } from 'react-router-dom';
-import UserProfile from './features/profile/UserProfile';
+import ProfilePage from './features/profile/ProfilePage';
 import PrivateRoute from './components/PrivateRoute';
 import { useSelector } from 'react-redux';
 import { getProfile } from './features/profile/profileSlice';
+import { getUser } from './features/user/userSlice';
 
 function App() {
-  const user = useSelector(getProfile);
-  const isLoggedIn = user.isLoggedIn;
-  //console.log(state);
+  const user = useSelector(getUser);
 
   return (
     <BrowserRouter>
@@ -24,7 +23,10 @@ function App() {
       </div>
 
       <Routes>
-        <Route path="/profile" Component={<PrivateRoute component={UserProfile} path="/profile"/>} />
+        <Route 
+          path="/profile" 
+          element={<PrivateRoute user={user} privateComponent={ProfilePage} name="Tyler" value="Roberts"/>} 
+        />
         <Route 
           path="/" 
           element={<Navigate replace to="/home" />}
