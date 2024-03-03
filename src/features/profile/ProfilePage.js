@@ -2,10 +2,7 @@ import React from "react";
 import ProfileImageCoursel from "./ProfileImageCarousel";
 import { Container, Row, Col } from "react-bootstrap";
 
-const UserProfile = ({ match }) => {
-    //const { userId } = match.params;
-
-    //console.log('User ID: ', userId);
+const ProfilePage = ({name, value}) => {
 
     return (
         <Container fluid>
@@ -23,4 +20,4 @@ const UserProfile = ({ match }) => {
     )
 };
 
-export default UserProfile;
+export default ProfilePage;
