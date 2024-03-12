@@ -3,21 +3,29 @@ class User {
     username = "";
     email = "";
     role = "";
-    isloggedIn = true;
-
-    getIsLoggedin() {
-        return this.isloggedIn;
-    }
-
-    login() {
-        this.isloggedIn = true;
-    }
-
-    logout() {
-        this.isloggedIn = false;
-    }
+    isLoggedIn = false;
 
     constructor() {};
+
+    setUser(id, username, email, role) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.role = role;
+        this.isLoggedIn = true;
+
+        return this;
+    }
+
+    toJSON() {
+        return {
+            id: this.id,
+            username: this.username,
+            email: this.email,
+            role: this.role,
+            isLoggedIn: this.isLoggedIn
+        }
+    }
 }
 
 export default User;

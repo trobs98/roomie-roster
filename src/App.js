@@ -1,16 +1,19 @@
 import React from 'react';
 import './App.css';
-import NavigationBar from './app/NavigationBar';
+
 import { 
   BrowserRouter,
   Routes,
   Route,
   Navigate
 } from 'react-router-dom';
-import ProfilePage from './features/profile/ProfilePage';
+
 import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 import { useSelector } from 'react-redux';
-import { getProfile } from './features/profile/profileSlice';
+
+import ProfilePage from './features/profile/ProfilePage';
+import LoginPage from './components/LoginPage';
 import { getUser } from './features/user/userSlice';
 
 function App() {
@@ -19,20 +22,40 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <NavigationBar />
-      </div>
+        <Routes>
+          
+          <Route
+            path="/login"
+            element={
+              <PublicRoute
+                user={user}
+                publicComponent={LoginPage}
+              />
+            }
+          />
 
-      <Routes>
-        <Route 
-          path="/profile" 
-          element={<PrivateRoute user={user} privateComponent={ProfilePage} />} 
-        />
-        <Route 
-          path="/" 
-          element={<Navigate replace to="/home" />}
-        />
-        {/* <Route exact path="/profile/:userId" Component={UserProfile} /> */}
-      </Routes>
+          <Route
+            path="/profile" 
+            element={
+              <PrivateRoute
+                user={user} 
+                privateComponent={ProfilePage} 
+              />
+            } 
+          />
+          
+          <Route
+            path="*" 
+            element={
+              <PrivateRoute 
+                user={user} 
+                privateComponent={ () => <Navigate replace to="/home" /> } 
+              />
+            }
+          />
+
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import Profile from "../../models/Profile";
 
 const initialProfileState = {
-    profile: new Profile(),
+    profile: new Profile().toJSON(),
     status: 'idle',
     error: null
 };
