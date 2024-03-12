@@ -1,14 +1,17 @@
-import QueryString from "qs";
 import React from "react";
-import { Navigate, useLocation, useParams } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import NavigationBar from "../app/NavigationBar";
 
 const PrivateRoute = ({ user: user, privateComponent: PrivateComponent, ...rest}) => {
-    const location = useLocation();
-    const urlParams = useParams();
-    const isLoggedIn = user.user.getIsLoggedin();
+    const isLoggedIn = user.user.isLoggedIn;
 
     if (isLoggedIn) {
-        return (<PrivateComponent {...rest} />)
+        return (
+            <>
+                <NavigationBar />
+                <PrivateComponent {...rest} />
+            </>
+            )
     } else {
         return (<Navigate replace to="/login" />)
     }

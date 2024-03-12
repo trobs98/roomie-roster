@@ -5,12 +5,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faUser, faMessage } from '@fortawesome/free-solid-svg-icons';
-import { useSelector } from 'react-redux';
-import { getProfile } from '../features/profile/profileSlice';
 
 const NavigationBar = () => {
-    //const user = useSelector(getProfile);
-
     return (
         <nav>
             <Container fluid>
