@@ -8,10 +8,10 @@ import Image from "react-bootstrap/Image";
 import { useSelector } from "react-redux";
 import { getProfile } from "./profileSlice";
 
-const ProfileImageCoursel = (props) => {
+const ProfileImageCoursel = ({imagesIds}) => {
     const user = useSelector(getProfile);
-    const [index, setIndex] = useState(0);
-    const carouselImageIds = props.imagesIds;
+    const [imageCarouselIndex, setimageCarouselIndex] = useState(0);
+    const carouselImageIds = imagesIds;
     // const carouselImages = 
 
     const carouselImages = [
@@ -32,15 +32,15 @@ const ProfileImageCoursel = (props) => {
         }
     ]
 
-    const handleSelect = (selectedIndex) => {
-        setIndex(selectedIndex);
+    const handleSelect = (selectedimageCarouselIndex) => {
+        setimageCarouselIndex(selectedimageCarouselIndex);
     };
 
     const carouselIndicatorCircles = () => {
         const indicators = [];
 
         for (let i = 0; i < carouselImages.length; i++) {
-            if (i === index) {
+            if (i === imageCarouselIndex) {
                 indicators.push(<FontAwesomeIcon icon={solidCircle} style={{marginLeft:"5px", marginRight:"1px", color:"#74C0FC"}}/>);
             } else {
                 indicators.push(<FontAwesomeIcon icon={emptyCircle} style={{marginLeft:"5px",  marginRight:"1px", color:"#74C0FC"}}/>);
@@ -52,7 +52,7 @@ const ProfileImageCoursel = (props) => {
 
     return (
         <Container className="profile-carousel">
-            <Carousel activeIndex={index} onSelect={handleSelect} interval={null} indicators={false} slide={false}>
+            <Carousel activeimageCarouselIndex={imageCarouselIndex} onSelect={handleSelect} interval={null} indicators={false} slide={false}>
                 {carouselImages.map((image) => (
                     <Carousel.Item key={image.id}>
                         <Image 

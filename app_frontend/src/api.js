@@ -26,3 +26,28 @@ export const loginUser = async (data) => {
         }
     });
 }
+
+export const getProfileByUserId = async ({userId}) => {
+    return new Promise((resolve, reject) => {
+        try {
+            //let result = axios.get('/api/profile', userId);
+            
+            // TODO: Update to API request
+            let result = {
+                status: "success",
+                data: {
+                    id: "1",
+                    username: "username",
+                    email: "email",
+                    role: "role",
+                },
+                message: "Successfully retrieved profile"
+            }
+
+            resolve(result.data);
+        } catch (err) {
+            console.log('error: ', err);
+            reject(err);
+        }
+    });
+}
